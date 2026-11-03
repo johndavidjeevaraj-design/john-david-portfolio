@@ -38,7 +38,7 @@ const projects: Project[] = [
     href: "https://rebestafresh.in",
     github:
       "https://github.com/johndavidjeevaraj-design/rebesta-own-store",
-    action: "VISIT WEBSITE ↗",
+    action: "OPEN LIVE PROJECT ↗",
   },
   {
     number: "02",
@@ -58,7 +58,7 @@ const projects: Project[] = [
     visual: "food",
     github:
       "https://github.com/johndavidjeevaraj-design/rebesta-platform",
-    action: "CURRENTLY BUILDING",
+    action: "IN DEVELOPMENT",
   },
   {
     number: "03",
@@ -78,7 +78,7 @@ const projects: Project[] = [
     visual: "smart",
     github:
       "https://github.com/johndavidjeevaraj-design/smartnest",
-    action: "DESIGN EXPLORATION",
+    action: "VIEW PROJECT ↗",
   },
 ];
 
@@ -443,23 +443,19 @@ export default function Portfolio() {
                       href={project.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="project-action"
+                      className="project-action project-action-primary"
                       aria-label={`${project.action} - ${project.name}`}
                     >
                       {project.action}
                     </a>
-                  ) : (
-                    <span className="project-action inactive">
-                      {project.action}
-                    </span>
-                  )}
+                  ) : null}
 
                   {project.github && (
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="project-action"
+                      className="project-action project-action-secondary"
                       aria-label={`View ${project.name} source code on GitHub`}
                     >
                       VIEW SOURCE ↗
