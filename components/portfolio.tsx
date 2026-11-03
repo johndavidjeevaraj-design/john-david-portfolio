@@ -345,6 +345,20 @@ function ProjectVisual({ type }: { type: Project["visual"] }) {
 export default function Portfolio() {
   return (
     <main>
+      <svg className="portfolio-filters" aria-hidden="true" focusable="false">
+        <defs>
+          <filter id="capability-goo" x="-30%" y="-60%" width="160%" height="220%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8"
+              result="goo"
+            />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
       <Hero />
 
       {/* INTRO */}
@@ -530,6 +544,10 @@ export default function Portfolio() {
               className="capability"
               key={capability.number}
             >
+              <div className="capability-gooey" aria-hidden="true">
+                <span />
+                <span />
+              </div>
               <span>{capability.number}</span>
 
               <h3>{capability.title}</h3>
