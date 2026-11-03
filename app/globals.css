@@ -774,28 +774,55 @@ main {
 .project-links a.project-action {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  min-height: 42px;
   width: fit-content;
   margin: 0;
-  padding: 0 0 7px;
-  border: 0;
-  border-bottom: 1px solid var(--foreground);
-  border-radius: 0;
-  color: var(--foreground);
-  background: transparent;
+  padding: 0 15px;
+  border: 1px solid transparent;
+  border-radius: 3px;
   font-family: var(--font-mono);
   font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.8px;
+  font-weight: 600;
+  letter-spacing: 0.75px;
   text-decoration: none;
   white-space: nowrap;
   transition:
-    color 200ms ease,
-    border-color 200ms ease;
+    transform 220ms ease,
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .project-links a.project-action:hover {
-  color: #719c25;
-  border-color: #719c25;
+  transform: translateY(-2px);
+}
+
+.project-links a.project-action-primary {
+  color: #191a17;
+  background: #c4f15a;
+  border-color: #c4f15a;
+  box-shadow: 0 5px 16px rgba(125, 160, 52, 0.12);
+}
+
+.project-links a.project-action-primary:hover {
+  color: #191a17;
+  background: #d0fa70;
+  border-color: #d0fa70;
+  box-shadow: 0 8px 22px rgba(125, 160, 52, 0.2);
+}
+
+.project-links a.project-action-secondary {
+  color: var(--foreground);
+  background: transparent;
+  border-color: var(--line);
+}
+
+.project-links a.project-action-secondary:hover {
+  color: var(--foreground);
+  background: rgba(25, 26, 23, 0.045);
+  border-color: var(--foreground);
 }
 
 .project-links a.project-action:focus-visible {
@@ -2577,5 +2604,36 @@ main {
   .capability-gooey,
   .capability-gooey span {
     transition: none !important;
+  }
+}
+
+
+/* =========================================
+   PROJECT STATUS — LIVE SIGNAL
+========================================= */
+
+.status.live .status-indicator {
+  animation: project-live-pulse 2s ease-out infinite;
+}
+
+.status.development .status-indicator {
+  box-shadow: 0 0 0 3px rgba(194, 138, 48, 0.12);
+}
+
+@keyframes project-live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(22, 131, 74, 0.28);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(22, 131, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(22, 131, 74, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status.live .status-indicator {
+    animation: none;
   }
 }
