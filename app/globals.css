@@ -2489,3 +2489,93 @@ main {
     opacity: 0.65;
   }
 }
+
+
+/* =========================================
+   CAPABILITIES — GOOEY HOVER
+========================================= */
+
+.portfolio-filters {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.capability {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: padding-inline 350ms ease;
+}
+
+.capability > span,
+.capability > h3,
+.capability > p {
+  position: relative;
+  z-index: 1;
+  transition: color 300ms ease;
+}
+
+.capability-gooey {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  filter: url("#capability-goo");
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.capability-gooey span {
+  position: absolute;
+  top: 50%;
+  left: 14%;
+  width: 105px;
+  height: 74px;
+  border-radius: 50%;
+  background: rgba(196, 241, 90, 0.72);
+  transform: translate(-50%, -50%) scale(0.55);
+  transition:
+    left 650ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.capability-gooey span + span {
+  left: 25%;
+  width: 76px;
+  height: 58px;
+  transition-delay: 45ms;
+}
+
+.capability:hover .capability-gooey,
+.capability:focus-within .capability-gooey {
+  opacity: 0.2;
+}
+
+.capability:hover .capability-gooey span:first-child,
+.capability:focus-within .capability-gooey span:first-child {
+  left: 78%;
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.capability:hover .capability-gooey span + span,
+.capability:focus-within .capability-gooey span + span {
+  left: 86%;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .capability:hover {
+    padding-inline: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capability,
+  .capability-gooey,
+  .capability-gooey span {
+    transition: none !important;
+  }
+}
