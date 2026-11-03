@@ -1,14 +1,6 @@
 
 "use client";
 
-function HeroMetalWord() {
-  return (
-    <span className="hero-metal-word" aria-label="NEXT.">
-      NEXT.
-    </span>
-  );
-}
-
 export default function Hero() {
   return (
     <section className="hero" id="home">
@@ -60,7 +52,7 @@ export default function Hero() {
               <br />
               <span className="hero-heading-second">
                 WHAT&apos;S{" "}
-                <HeroMetalWord />
+                NEXT.
               </span>
             </h1>
           </div>
