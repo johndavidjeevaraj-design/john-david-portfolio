@@ -1,62 +1,38 @@
+const project = {
+  title: "AR Navigation for Visually Impaired Persons",
+  category: "FINAL-YEAR ACADEMIC PROJECT",
+  description:
+    "Explored augmented reality as an assistive navigation approach, with the goal of helping visually impaired people navigate their surroundings more independently.",
+};
 
-const training = [
-  {
-    number: "01",
-    name: "Data Science",
-    provider: "Internship / Training",
-    category: "DATA & ANALYTICS",
-  },
-  {
-    number: "02",
-    name: "Azure Cloud Computing",
-    provider: "Internship / Training",
-    category: "CLOUD COMPUTING",
-  },
-  {
-    number: "03",
-    name: "Cybersecurity",
-    provider: "Internship / Training",
-    category: "INFORMATION SECURITY",
-  },
-];
-
-export default function Certifications() {
+export default function AcademicProject() {
   return (
-    <section className="section certifications" id="certifications">
+    <section className="section certifications" id="academic-project">
       <div className="section-top">
-        <span className="eyebrow">07 / PROFESSIONAL DEVELOPMENT</span>
+        <span className="eyebrow">07 / ACADEMIC PROJECT</span>
         <span className="section-caption">
-          CONTINUOUS LEARNING. PRACTICAL EXPOSURE.
+          APPLYING TECHNOLOGY TO A REAL-WORLD CHALLENGE.
         </span>
       </div>
 
       <h2>
-        KEEP
+        BUILT
         <br />
-        <span>LEARNING.</span>
+        <span>WITH PURPOSE.</span>
       </h2>
 
       <div className="certification-list">
-        {training.map((item) => (
-          <article className="certification-item" key={item.number}>
-            <span className="certification-number">
-              {item.number}
-            </span>
+        <article className="certification-item">
+          <span className="certification-number">01</span>
 
-            <div className="certification-info">
-              <span className="project-category">
-                {item.category}
-              </span>
+          <div className="certification-info">
+            <span className="project-category">{project.category}</span>
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+          </div>
 
-              <h3>{item.name}</h3>
-              <p>{item.provider}</p>
-            </div>
-
-            <span className="certification-pending">
-              TRAINING EXPERIENCE
-            </span>
-          </article>
-        ))}
+          <span className="certification-pending">ACADEMIC WORK</span>
+        </article>
       </div>
     </section>
   );
