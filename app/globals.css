@@ -2416,3 +2416,54 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* =========================================
+   HERO — SILVER CHROME TYPOGRAPHY
+========================================= */
+
+.hero-metal-text {
+  display: inline-block;
+  color: transparent;
+  background-image: linear-gradient(
+    105deg,
+    #747a80 0%,
+    #d9dde0 9%,
+    #ffffff 16%,
+    #858c93 25%,
+    #f5f7f8 34%,
+    #626a72 43%,
+    #e8ecef 52%,
+    #ffffff 59%,
+    #858c93 68%,
+    #dfe3e6 77%,
+    #737a81 87%,
+    #f8f9fa 96%
+  );
+  background-size: 220% 100%;
+  background-position: 100% 50%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.45));
+  animation: hero-chrome-shine 6s ease-in-out infinite;
+}
+
+@keyframes hero-chrome-shine {
+  0%,
+  15% {
+    background-position: 100% 50%;
+  }
+
+  75%,
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-metal-text {
+    animation: none;
+    background-position: 50% 50%;
+  }
+}
