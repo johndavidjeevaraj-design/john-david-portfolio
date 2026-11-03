@@ -1,6 +1,16 @@
 
 "use client";
 
+import dynamic from "next/dynamic";
+
+const MetalText = dynamic(
+  () => import("metal-fx").then((module) => module.MetalText),
+  {
+    ssr: false,
+    loading: () => <span className="hero-metal-fallback">NEXT.</span>,
+  }
+);
+
 export default function Hero() {
   return (
     <section className="hero" id="home">
@@ -52,7 +62,15 @@ export default function Hero() {
               <br />
               <span className="hero-heading-second">
                 <span>WHAT&apos;S</span>{" "}
-                <span className="hero-metal-text">NEXT.</span>
+                <span className="hero-metal-slot">
+                  <MetalText
+                    font="800 1em/0.84 Manrope, sans-serif"
+                    color="#E2E2E2"
+                    strength={0.95}
+                  >
+                    NEXT.
+                  </MetalText>
+                </span>
               </span>
             </h1>
           </div>
