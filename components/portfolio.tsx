@@ -389,7 +389,11 @@ export default function Portfolio() {
                 {project.number}
               </span>
 
-              <div className="project-preview">
+              <div
+                className={`project-preview ${
+                  project.number === "01" ? "project-preview-featured" : ""
+                }`}
+              >
                 <ProjectVisual type={project.visual} />
               </div>
 
