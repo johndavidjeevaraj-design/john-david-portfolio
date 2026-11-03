@@ -1,38 +1,7 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import {
-  MetalText,
-  useMetalTextReflection,
-  setCursorLightConfig,
-  setGlowConfig,
-} from "metal-fx";
-
 export default function Hero() {
-  // "WHAT'S" catches the liquid-metal reflection from "NEXT."
-  const whatsRef = useRef<HTMLSpanElement | null>(null);
-  useMetalTextReflection(whatsRef);
-
-  // metal-fx mounts a WebGL canvas only on the client. Render plain text on the
-  // server / first client paint, then swap to <MetalText> after hydration to
-  // avoid a server/client HTML mismatch (hydration error).
-  const [mounted, setMounted] = useState(false);
-
-  // No cursor sprite reflection, but KEEP the glow. For glyph (text) masks the
-  // halo blur is mostly discarded inside the strokes, so we boost `pointGain`
-  // (and the overall halo opacity) or the rays read as invisible.
-  useEffect(() => {
-    setCursorLightConfig({ cursor: false });
-    setGlowConfig({
-      haloOpMul: 1.7,
-      peakOp: 0.95,
-      baseOp: 0.32,
-      pointGain: 3.2,
-    });
-    setMounted(true);
-  }, []);
-
   return (
     <section className="hero" id="home">
       <div className="hero-grid" aria-hidden="true" />
@@ -82,22 +51,8 @@ export default function Hero() {
               BUILDING
               <br />
               <span className="hero-heading-second">
-                <span ref={whatsRef}>WHAT&apos;S</span>{" "}
-                {mounted ? (
-                  <MetalText
-                    font="800 1em/0.84 Manrope, sans-serif"
-                    color="#E2E2E2"
-                    theme="dark"
-                    strength={0.95}
-                    glow
-                    glowGain={3.2}
-                    reflectionTargets={[{ ref: whatsRef, strength: 0.64 }]}
-                  >
-                    NEXT.
-                  </MetalText>
-                ) : (
-                  <span>NEXT.</span>
-                )}
+                WHAT&apos;S{" "}
+                NEXT.
               </span>
             </h1>
           </div>
