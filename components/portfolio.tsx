@@ -2,7 +2,7 @@
 import Hero from "./hero";
 import Experience from "./experience";
 import Skills from "./skills";
-import Certifications from "./certifications";
+import AcademicProject from "./certifications";
 
 type Project = {
   number: string;
@@ -573,8 +573,8 @@ export default function Portfolio() {
       {/* TECHNICAL SKILLS */}
       <Skills />
 
-      {/* PROFESSIONAL DEVELOPMENT */}
-      <Certifications />
+      {/* ACADEMIC PROJECT */}
+      <AcademicProject />
 
       {/* CONTACT */}
       <section className="contact" id="contact">
