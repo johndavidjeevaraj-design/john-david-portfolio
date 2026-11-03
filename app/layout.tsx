@@ -40,7 +40,8 @@ export const metadata: Metadata = {
     locale: "en_IN",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
+    images: ["/opengraph-image"],
     title: "John David Jeevaraj | Full Stack Developer",
     description:
       "Full-stack projects, technical skills and digital experiences by John David Jeevaraj.",
