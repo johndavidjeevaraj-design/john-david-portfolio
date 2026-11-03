@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MetalText,
   useMetalTextReflection,
@@ -14,6 +14,11 @@ export default function Hero() {
   const whatsRef = useRef<HTMLSpanElement | null>(null);
   useMetalTextReflection(whatsRef);
 
+  // metal-fx mounts a WebGL canvas only on the client. Render plain text on the
+  // server / first client paint, then swap to <MetalText> after hydration to
+  // avoid a server/client HTML mismatch (hydration error).
+  const [mounted, setMounted] = useState(false);
+
   // No cursor sprite reflection, but KEEP the glow. For glyph (text) masks the
   // halo blur is mostly discarded inside the strokes, so we boost `pointGain`
   // (and the overall halo opacity) or the rays read as invisible.
@@ -25,6 +30,7 @@ export default function Hero() {
       baseOp: 0.32,
       pointGain: 3.2,
     });
+    setMounted(true);
   }, []);
 
   return (
@@ -77,17 +83,21 @@ export default function Hero() {
               <br />
               <span className="hero-heading-second">
                 <span ref={whatsRef}>WHAT&apos;S</span>{" "}
-                <MetalText
-                  font="800 1em/0.84 Manrope, sans-serif"
-                  color="#E2E2E2"
-                  theme="dark"
-                  strength={0.95}
-                  glow
-                  glowGain={3.2}
-                  reflectionTargets={[{ ref: whatsRef, strength: 0.64 }]}
-                >
-                  NEXT.
-                </MetalText>
+                {mounted ? (
+                  <MetalText
+                    font="800 1em/0.84 Manrope, sans-serif"
+                    color="#E2E2E2"
+                    theme="dark"
+                    strength={0.95}
+                    glow
+                    glowGain={3.2}
+                    reflectionTargets={[{ ref: whatsRef, strength: 0.64 }]}
+                  >
+                    NEXT.
+                  </MetalText>
+                ) : (
+                  <span>NEXT.</span>
+                )}
               </span>
             </h1>
           </div>
