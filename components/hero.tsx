@@ -1,7 +1,35 @@
 
 "use client";
 
+import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+import {
+  useMetalTextReflection,
+  setCursorLightConfig,
+  setGlowConfig,
+} from "metal-fx";
+
+// metal-fx mounts a WebGL canvas only on the client. Load it with ssr:false so
+// the server and the first client render both emit the plain-text fallback,
+// then swap to <MetalText> after hydration (no hydration mismatch).
+const MetalText = dynamic(
+  () => import("metal-fx").then((m) => m.MetalText),
+  { ssr: false, loading: () => <span>NEXT.</span> }
+);
+
 export default function Hero() {
+  const whatsRef = useRef<HTMLSpanElement | null>(null);
+  useMetalTextReflection(whatsRef);
+
+  useEffect(() => {
+    setCursorLightConfig({ cursor: false });
+    setGlowConfig({
+      haloOpMul: 1.7,
+      peakOp: 0.95,
+      baseOp: 0.32,
+      pointGain: 3.2,
+    });
+  }, []);
   return (
     <section className="hero" id="home">
       <div className="hero-grid" aria-hidden="true" />
@@ -51,8 +79,18 @@ export default function Hero() {
               BUILDING
               <br />
               <span className="hero-heading-second">
-                WHAT&apos;S{" "}
-                NEXT.
+                <span ref={whatsRef}>WHAT&apos;S</span>{" "}
+                <MetalText
+                  font="800 1em/0.84 Manrope, sans-serif"
+                  color="#E2E2E2"
+                  theme="dark"
+                  strength={0.95}
+                  glow
+                  glowGain={3.2}
+                  reflectionTargets={[{ ref: whatsRef, strength: 0.64 }]}
+                >
+                  NEXT.
+                </MetalText>
               </span>
             </h1>
           </div>
