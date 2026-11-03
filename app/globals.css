@@ -2434,3 +2434,58 @@ main {
   -webkit-text-stroke: 0.45px rgba(65, 72, 79, 0.34);
 }
 
+
+
+/* =========================================
+   FEATURED PROJECT — BORDER BEAM
+========================================= */
+
+@property --project-beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.project-preview-featured {
+  position: relative;
+  isolation: isolate;
+}
+
+.project-preview-featured::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1.5px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--project-beam-angle),
+    transparent 0deg,
+    transparent 275deg,
+    rgba(196, 241, 90, 0.12) 302deg,
+    #c4f15a 320deg,
+    #ffffff 327deg,
+    rgba(196, 241, 90, 0.28) 338deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: project-border-beam 8s linear infinite;
+  opacity: 0.9;
+}
+
+@keyframes project-border-beam {
+  to {
+    --project-beam-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-preview-featured::after {
+    animation: none;
+    opacity: 0.65;
+  }
+}
